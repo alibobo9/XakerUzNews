@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TON Xizmatlari</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0d1117;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 16px 28px;
+      margin: 12px;
+      background-color: #00bcd4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      width: 85%;
+      max-width: 300px;
+    }
+
+    .btn:hover {
+      background-color: #0097a7;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background-color: #1f2937;
+      color: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 0 12px #00ffe0;
+      text-align: center;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .arrow {
+      font-size: 28px;
+      animation: blink 1s infinite;
+      margin: 14px 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    #walletAddress {
+      word-break: break-all;
+      cursor: pointer;
+      color: #00e5ff;
+      text-decoration: underline;
+      font-size: 18px;
+    }
+
+    #copyMessage {
+      color: #00ffcc;
+      font-size: 16px;
+      margin-top: 10px;
+      display: none;
+      transition: all 0.3s ease;
+    }
+
+    .blinking {
+      animation: blinkText 1.5s infinite;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 30px;
+      color: #00ffcc;
+    }
+
+    @keyframes blinkText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .footer-buttons {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .footer-buttons button {
+      background-color: #222;
+      border: 1px solid #00e5ff;
+      padding: 12px 22px;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      width: 85%;
+      max-width: 300px;
+    }
+
+    .footer-buttons button:hover {
+      background-color: #00e5ff;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>TON xizmatlari</h2>
+
+  <button class="btn" onclick="window.location.href='https://t.me/qqs_8'">Admin 👨🏻‍💻</button>
+  <button class="btn" onclick="openModal()">Sotish</button>
+  <button class="btn">Sotib olish</button>
+
+  <div class="blinking">Xalollik foydadan ustun ✅</div>
+
+  <div class="footer-buttons">
+    <button>2022 Guruh sotish</button>
+    <button>2023 Guruh sotish</button>
+    <button>2024 Guruh sotish</button>
+  </div>
+
+  <!-- Modal oynacha -->
+  <div class="modal" id="sellModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <p><strong>Minimal $1 TON Max 50 $TON.</strong></p>
+      <p>Sotmoqchi bo'lgan $TON ni jonating</p>
+      <div class="arrow">⬇️</div>
+
+      <p id="walletAddress" onclick="copyAddress()">
+        UQB3ammWtUuS_KAxquo-ErxH8S4x1wYMLBX8J06Oas25GA-b
+      </p>
+
+      <div id="copyMessage">📋 Kopyalandi!</div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function openModal() {
+      document.getElementById("sellModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("sellModal").style.display = "none";
+    }
+
+    function copyAddress() {
+      const address = document.getElementById("walletAddress").innerText;
+      const textarea = document.createElement("textarea");
+      textarea.value = address;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        const msg = document.getElementById("copyMessage");
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 2000);
+      } catch (err) {
+        alert("❌ Nusxalab bo‘lmadi: " + err);
+      }
+    }
+  </script>
+
+</body>
+</html>
